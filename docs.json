@@ -20,6 +20,12 @@
             ]
           },
           {
+            "group": "Instalação",
+            "pages": [
+              "index"
+            ]
+          },
+          {
             "group": "Configurações",
             "pages": [
               "settings/batch",
