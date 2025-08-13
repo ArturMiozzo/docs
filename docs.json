@@ -48,8 +48,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/litrium-logo.svg",
+    "dark": "/logo/litrium-logo.svg"
   },
   "navbar": {
     "links": [
