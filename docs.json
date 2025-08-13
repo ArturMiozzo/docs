@@ -4,8 +4,8 @@
   "name": "Litrium Framework Docs",
   "colors": {
     "primary": "#FF9900",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#FF9900",
+    "dark": "#FF9900"
   },
   "favicon": "/litrium-icon.svg",
   "navigation": {
@@ -34,7 +34,7 @@
               "settings/parameters",
               "settings/processors",
               "settings/saveimages",
-              "settings/users",
+              "settings/users"
             ]
           }
         ]
