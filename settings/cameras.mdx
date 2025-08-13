@@ -1,5 +1,41 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Câmeras"
+description: "Configuração de câmeras."
 ---
 
+### Settings.json
+
+```json
+"cameras": [
+    {
+      "name": "Camera1",
+      "friendlyName": "Camera",
+      "address": "00000000",
+      "config": "Path=Images",
+      "imagesNumber": 1,
+      "deviceType": "EMULATE"
+    }
+  ],
+```
+
+A configuração de câmeras é feita no arquivo de configuração pelo campo **cameras**. O campo é um array do objeto camera, com os parâmetros:
+
+- **name**
+  - Nome interno da câmera, usado para associar ela a outras funções.
+- **friendlyName**
+  - Nome usado ao exibir informações da câmera, como na tela, log e salvamento de imagens.
+- **address**
+  - Endereço usado para conexão com a câmera, em geral, o **serial** do dispositivo.
+- **config**
+  - Configuração aplicada na câmera, no formato "nome=valor;nome=valor". A configuração depende do [dispositivo](/cameras/device-type) usado.
+- **imagesNumber**
+  - Número de imagens que o framework espera a câmera enviar. O valor de imagesNumber indica quantas imagens daquela câmera terá na peça, isso é, ao utilizar o controle de imagens da câmera por indice, ao definir o processamento por exemplo, o indice é resto da divizão do total de imagens capturadas desde o inicio da produção com o valor de imagesNumber
+- **deviceType**
+  - Tipo do dispositivo, pode ser:
+
+    | deviceType                   | id | Descrição                   |
+    | ---------------------------- | --- | --------------------------- |
+    | [GENICAM](/cameras/genicam)  | 0  | Câmera com suporte GenICam  |
+    | [EMULATE](/cameras/emulated) | 1  | Câmera simulada             |
+    | [XIMEA](/cameras/ximea)      | 2  | Câmera da fabricante Ximea  |
+    | [DAHENG](/cameras/daheng)    | 3  | Câmera da fabricante Daheng |
