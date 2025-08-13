@@ -14,55 +14,27 @@
         "tab": "Configurações",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Visão Geral",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Configurações",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "settings/batch",
+              "settings/calibration",
+              "settings/cameras",
+              "settings/check",
+              "settings/evaluation",
+              "settings/generalsettings",
+              "settings/inspections",
+              "settings/modbus",
+              "settings/models",
+              "settings/parameters",
+              "settings/processors",
+              "settings/saveimages",
+              "settings/users",
             ]
           }
         ]
