@@ -33,13 +33,13 @@
               "settings/cameras",
               "settings/check",
               "settings/evaluation",
-              "settings/generalsettings",
+              "settings/general-settings",
               "settings/inspections",
               "settings/modbus",
               "settings/models",
               "settings/parameters",
               "settings/processors",
-              "settings/saveimages",
+              "settings/save-images",
               "settings/users"
             ]
           }
