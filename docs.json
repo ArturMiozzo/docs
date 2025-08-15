@@ -22,7 +22,7 @@
           {
             "group": "Instalação",
             "pages": [
-              "index"
+              "settings/installation"
             ]
           },
           {
