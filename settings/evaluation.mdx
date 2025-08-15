@@ -45,20 +45,20 @@ O campo é um objeto com os parâmetros:
 - **enableScript**
   - Se true, define que a avaliação será feita usando um script, ao invés das regras padrões. Nesse caso, o framework executará o [script de avalição](/settings/evaluation-script) enviado o resultado gerado por todos os processors configurados.
 - **debug**
-  - Se true e o script de avaliação estiver habilitado, **não **executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
+  - Se true e o script de avaliação estiver habilitado, **não** executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
 - **file**
   - Caminho para o [script de avaliação](/settings/evaluation-script), se utilizado.
 - **timeout**
   - Define o tempo maximo que uma peça pode ficar armazenada em processamento. O tempo é em milissegundos e passa a contar a partir do inicio da peça, que pode ser no recebimento do resultado do primeiro processamento, ou pelo inicio do trigger modbus. Se tiver valor **-1**, não considera o timeout.
 - **debug**
-  - Se true e o script de avaliação estiver habilitado, **não **executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
+  - Se true e o script de avaliação estiver habilitado, **não** executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
 - **firstProcessName**
-  - Se definido, quando receber o primeiro resultado do processor com o nome definido, considera que o resultado é de uma nova peça, e descarta a peça atual com resultado **FAILED_NOT_COMPLETED**. Se o valor for **null**, não utiliza nenhum como primeiro. 
+  - Se definido, quando receber o primeiro resultado do processor com o nome definido, considera que o resultado é de uma nova peça, e descarta a peça atual com resultado **FAILED_NOT_COMPLETED**. Se o valor for **null**, não utiliza nenhum como primeiro.
 - **lastProcessName**
-  - Se definido, quando receber um resultado do processor com o nome definido, considera que o resultado é o último da peça atual, e envia a peça atual com resultado aprovado ou reprovado. Se o valor for **null**, não utiliza nenhum como último. 
+  - Se definido, quando receber um resultado do processor com o nome definido, considera que o resultado é o último da peça atual, e envia a peça atual com resultado aprovado ou reprovado. Se o valor for **null**, não utiliza nenhum como último.
 - **lastProcessIndex**
-  - Além do **lastProcessName**, utiliza o campo como indice da última imagem, a partir do 0, ou seja, se definido o processor "processor1" como lastProcessName e 2 como lastProcessIndex, encerra a peça ao receber o terceiro resultado do "processor1". 
+  - Além do **lastProcessName**, utiliza o campo como indice da última imagem, a partir do 0, ou seja, se definido o processor "processor1" como lastProcessName e 2 como lastProcessIndex, encerra a peça ao receber o terceiro resultado do "processor1".
 - **enableModbusPieceStartTrigger**
-  - Se true, utiliza a coil modbus definida no [**pieceStartTriggerAddress**](/settings/modbus) como inicio da peça, isso é, caso uma peça esteja sendo processada e o trigger disparar, ela será encerrada com resultado **FAILED_NOT_COMPLETED **e o proximo resultado será o primeiro da nova peça.
+  - Se true, utiliza a coil modbus definida no [**pieceStartTriggerAddress**](/settings/modbus) como inicio da peça, isso é, caso uma peça esteja sendo processada e o trigger disparar, ela será encerrada com resultado **FAILED_NOT_COMPLETED** e o proximo resultado será o primeiro da nova peça.
 - **parameters**
-  - Define a lista de parâmetros que serão lidos dos processamentos e usados como parâmetro, salvando em banco, exibindo na tela e usados para salvar imagens. **name **é o nome do parametro, que será lido do dicionário de saída dos scripts, **friendlyName **é o nome que será exibido na tela e nos relatórios. **value **aqui é ignorado.
+  - Define a lista de parâmetros que serão lidos dos processamentos e usados como parâmetro, salvando em banco, exibindo na tela e usados para salvar imagens. **name** é o nome do parametro, que será lido do dicionário de saída dos scripts, **friendlyName** é o nome que será exibido na tela e nos relatórios. **value** aqui é ignorado.
