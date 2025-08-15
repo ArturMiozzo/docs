@@ -1,5 +1,34 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Check de produção"
+description: "Configuração o check de produção. Funciona apenas com a configuração de modelos ativada "
 ---
 
+### Settings.json
+
+```json
+"check": {
+    "enable": true,
+    "inspections": [
+      "inspecao1",
+      "inspecao2",
+    ],
+    "model": "modelo1"
+  },
+```
+
+A configuração do check de produção é feita no arquivo de configuração pelo campo **check**. Funciona apenas com a configuração de modelos ativada
+
+Se habilitado, a cada inicio de [turno](/settings/turns) obriga o usuário a fazer um check de produção. Ao iniciar o check, solicita ao usuário que inspecione uma peça que deve reprovar, isso é, com defeitos, seguida de uma peça que deve aprovar, sem defeitos.
+
+Quando o check for executado, o framework envia para todos os scripts python de processamento com **executionStatus** igual a **CHECK_WAITING_APROVED** quando aguarda aprovação, e **CHECK_WAITING_REPROVED** quando aguarda reprovação.
+
+Na configuração podem ser definidas quais [inspeções](/settings/inspections) são habilitadas, que é uma lista de strings enviada para os scripts, e qual o modelo que será usado para o check.
+
+Os parâmetros do check de produção são:
+
+- **enable**
+  - true habilita o check de produção, false desabilita.
+- **inspections**
+  - Array de strings que define as inspeções habilitadas. Não tem impacto no framework, mas envia para os scripts python com o objetivo de aprovar ou não diferentes tipos de defeitos. Cada inspeção é apenas uma string que identifica se ela está habilitada.
+- **model**
+  - Nome do modelo usado no check, ele deve ser criado e existir no banco.

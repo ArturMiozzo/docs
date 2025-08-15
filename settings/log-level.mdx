@@ -1,0 +1,20 @@
+---
+title: "Nível de Log"
+description: "Níveis de log do framework"
+---
+
+O nivel de log representa a severidade do log gerado, quanto mais alto o id, menos log será gerado.
+
+Todo nivel log também loga o nivel maior dele, por exemplo, nivel Warn também loga os níveis Error, Fatal e Off.
+
+Em geral, informações de erro são logadas em nível **Error**, e informações de execução são logadas em nível **Debug**.
+
+| Log Level | ID | Descrição                             |
+| --------- | --- | ------------------------------------- |
+| Trace     | 0  | Nível de log Trace, gera todo log     |
+| Debug     | 1  | Nível de log Debug                    |
+| Info      | 2  | Nível de log Info                     |
+| Warn      | 3  | Nível de log Warn                     |
+| Error     | 4  | Nível de log Error                    |
+| Fatal     | 5  | Nível de log Fatal                    |
+| Off       | 6  | Nível de log Off, não gera nenhum log |

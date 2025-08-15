@@ -1,0 +1,38 @@
+---
+title: "Configurações Gerais"
+description: "Configurações gerias do framework"
+---
+
+### Settings.json
+
+```json
+"ApplicationLogLevel": "Trace",
+"CaptureLogLevel": "Info",
+"ProcessLogLevel": "Fatal",
+"agregateResults": true,
+"waitScriptToStart": true,
+"waitScriptTimeout": 10000,
+"startTimeout": -1,
+"stopTimeout": -1,
+```
+
+Cada configuração significa:
+
+- **ApplicationLogLevel**
+  - Define o [nível do log](/settings/log-level) de aplicação, que configura o log de todos os workers, exceto os de câmera e processamento.
+- **CaptureLogLevel**
+  - Define o [nível do log](/settings/log-level) de captura, que configura o log gerado pelas câmeras.
+- **ProcessLogLevel**
+  - Define o [nível do log](/settings/log-level) de processamento, que configura o log gerado pelos scripts python. Prints no python são logados em log level **DEBUG**.
+
+
+- **waitScriptToStart**
+  - Se true, aguarda o tempo configurado no waitScriptTimeout os scripts python iniciarem, isso é, o tempo maximo até o **start() **ser executado no python.
+
+
+- **waitScriptTimeout**
+  - Tempo maximo, em milissegundos, que o framework vai aguardar os scripts python iniciarem, isso é, o tempo maximo até o **start() **ser executado no python.
+- **startTimeout**
+  - Tempo maximo, em milissegundos, que o framework vai aguardar todas as chamadas de start serem feitas, isso inclui iniciar os scripts de processamento e avaliação, conectar com todas as câmeras, banco de dados, etc.... Se o valor for **-1**, aguarda indefinidamente.
+- **stopTimeout**
+  - Tempo maximo, em milissegundos, que o framework vai aguardar todas as chamadas de stop serem feitas. Se o valor for **-1**, aguarda indefinidamente.

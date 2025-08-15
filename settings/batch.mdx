@@ -1,5 +1,21 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Lote"
+description: "Configuração do lote de produção."
 ---
 
+### Settings.json
+
+```json
+"batch": {
+    "enable": false,
+    "validation": "^\\d+$"
+  },
+```
+
+A configuração do lote de produção é feita no arquivo de configuração pelo campo **batch**. Se for habilitado, ao clicar em iniciar produção, um popup é exibido para que o usuário preencha o lote seguindo a regra definida. O lote utilizado é salvo no banco de dados como um atributo de cada peça, podendo ser usado para filtragem nos relatórios:
+A configuração de lote possui os parâmetros:
+
+- **enable**
+  - true habilita o uso do lote de produção, false desabilita.
+- **validation**
+  - string que define a regra de validação do lote. Esse campo aceita apenas [expressões regulares](https://regexr.com). Caso a expressão não valide a entrada do usuário, ele não poderá iniciar a produção.

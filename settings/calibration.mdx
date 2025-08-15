@@ -1,5 +1,34 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Calibração"
+description: "Configuração da calibração de modelos. Funciona apenas com a configuração de modelos ativada"
 ---
 
+### Settings.json
+
+```json
+"calibration": {
+    "enable": false,
+    "parameters": [
+      {
+        "name": "ParametersA",
+        "friendlyName": "Parâmetro",
+        "value": "value"
+      }
+    ]
+  },
+```
+
+A configuração da calibração de modelos é feita no arquivo de configuração pelo campo **calibration**. Funciona apenas com a configuração de modelos.
+
+Se habilitado, obriga que todos os modelos sejam calibrados antes que sejam produzidos. Ao iniciar a calibração de um modelo, solicita ao usuário que inspecione uma peça que deve aprovar, sem defeitos.
+
+Quando a calibração for executada, o framework envia para todos os scripts python de processamento com **executionStatus** igual a **CALIBRATION_STARTED**.
+
+Na configuração podem ser definidos parâmetros de calibração, e toda vez que for executada uma calibração, o framework salva em banco os dados de calibração do modelo com a resposta dos scripts python, isso é, se definido um parametro de calibração com name=parametro1, caso o script retorne um valor para ele, será salvo no banco e ao executar a produção, esse valor é enviado para os scripts.
+
+Os parâmetros da calibração são:
+
+- **enable**
+  - true habilita a calibração dos modelos, false desabilita.
+- **parameters**
+  - Array que define os parâmetros da calibração. Cada item é um objeto do tipo **parameter** com **name**, que define o nome do parametro, que deve ser respeitado pelos scripts python. Os valores de friendlyName e value são ignorados.

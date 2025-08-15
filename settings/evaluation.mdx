@@ -1,5 +1,64 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Avaliação"
+description: "Configuração da avaliação e geração de resultado."
 ---
 
+### Settings.json
+
+```json
+"evaluation": {
+    "agregateResults": true,
+    "enableScript": true,
+    "debug": false,
+    "file": "Python\\MyEvaluation.py",
+    "timeout": 5000,
+    "firstProcessName": null,
+    "lastProcessName": null,
+    "lastProcessIndex": -1,
+    "enableModbusPieceStartTrigger": true,
+    "parameters": [
+      {
+        "name": "ParametersA",
+        "friendlyName": "Parâmetro",
+        "value": "value"
+      }
+    ]
+  }
+```
+
+A configuração da avaliação é feita no arquivo de configuração pelo campo **evaluation**. A avaliação é feita após todos os scripts executarem e é responsavel por gerar o resultado da peça, que pode ser:
+
+| Resultado            | Id | Descrição                                                                                               |
+| -------------------- | --- | ------------------------------------------------------------------------------------------------------- |
+| REPROVED             | 0  | Peça reprovou. Caso pelo menos 1 dos scripts retorne 0 no resultado, reprova a peça.                    |
+| APPROVED             | 1  | Peça aprovou. Gerado apenas se todos os scripts retornarem 1                                            |
+| IGNORED              | 2  | Peça ignorada. Gerado apenas se todos os scripts retornarem 2                                           |
+| FAILED_UNKNOWN       | -1 | Peça com falha desconhecida. É gerado caso tenha ocorrido algum erro interno na avaliação.              |
+| FAILED_PROCESS_ERROR | -2 | Peça com falha gerada em algum dos processemantos de script                                             |
+| FAILED_NOT_COMPLETED | -3 | Peça com falha por falta de imagens. É configurado pelo firstProcessName e lastProcessName.             |
+| FAILED_TIMEOUT       | -4 | Peça com falha por timeout, caso tenha levado mais do que o valor definido para timeout para processar. |
+
+O campo é um objeto com os parâmetros:
+
+- **agregateResults**
+  - Se false, não junta imagens em uma peça, apenas gera resultados individuais para cada resposta de script. Se true, junta a peça de acordo com as configurações de **imagesNumber** de cada câmera.
+- **enableScript**
+  - Se true, define que a avaliação será feita usando um script, ao invés das regras padrões. Nesse caso, o framework executará o [script de avalição](/settings/evaluation-script) enviado o resultado gerado por todos os processors configurados.
+- **debug**
+  - Se true e o script de avaliação estiver habilitado, **não **executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
+- **file**
+  - Caminho para o [script de avaliação](/settings/evaluation-script), se utilizado.
+- **timeout**
+  - Define o tempo maximo que uma peça pode ficar armazenada em processamento. O tempo é em milissegundos e passa a contar a partir do inicio da peça, que pode ser no recebimento do resultado do primeiro processamento, ou pelo inicio do trigger modbus. Se tiver valor **-1**, não considera o timeout.
+- **debug**
+  - Se true e o script de avaliação estiver habilitado, **não **executa o script de avaliação, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
+- **firstProcessName**
+  - Se definido, quando receber o primeiro resultado do processor com o nome definido, considera que o resultado é de uma nova peça, e descarta a peça atual com resultado **FAILED_NOT_COMPLETED**. Se o valor for **null**, não utiliza nenhum como primeiro. 
+- **lastProcessName**
+  - Se definido, quando receber um resultado do processor com o nome definido, considera que o resultado é o último da peça atual, e envia a peça atual com resultado aprovado ou reprovado. Se o valor for **null**, não utiliza nenhum como último. 
+- **lastProcessIndex**
+  - Além do **lastProcessName**, utiliza o campo como indice da última imagem, a partir do 0, ou seja, se definido o processor "processor1" como lastProcessName e 2 como lastProcessIndex, encerra a peça ao receber o terceiro resultado do "processor1". 
+- **enableModbusPieceStartTrigger**
+  - Se true, utiliza a coil modbus definida no [**pieceStartTriggerAddress**](/settings/modbus) como inicio da peça, isso é, caso uma peça esteja sendo processada e o trigger disparar, ela será encerrada com resultado **FAILED_NOT_COMPLETED **e o proximo resultado será o primeiro da nova peça.
+- **parameters**
+  - Define a lista de parâmetros que serão lidos dos processamentos e usados como parâmetro, salvando em banco, exibindo na tela e usados para salvar imagens. **name **é o nome do parametro, que será lido do dicionário de saída dos scripts, **friendlyName **é o nome que será exibido na tela e nos relatórios. **value **aqui é ignorado.
