@@ -57,7 +57,12 @@
         "label": "Entre em contato",
         "href": "mailto:comercial@litrium.com.br"
       }
-    ]
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Acesse nosso site",
+      "href": "https://litrium.com.br"
+    }
   },
   "contextual": {
     "options": [
