@@ -16,23 +16,49 @@ description: "Configuração da comunicação via modbus"
     "pieceTriggerDebounce": 100,
     "pieceResult": {
       "resultAddress": 3,
-      "updateAddress": 4,
-      "manualResultAddress": 5
+      "updateAddress": 4
     },
     "processResult": {
       "Processor": {
-        "resultAddress": 6,
-        "updateAddress": 7,
-        "manualResultAddress": 8
+        "resultAddress": 5,
+        "updateAddress": 6
       }
     }
   },
 ```
 
-A configuração do lote de produção é feita no arquivo de configuração pelo campo **batch**. Se for habilitado, ao clicar em iniciar produção, um popup é exibido para que o usuário preencha o lote seguindo a regra definida. O lote utilizado é salvo no banco de dados como um atributo de cada peça, podendo ser usado para filtragem nos relatórios:
-A configuração de lote possui os parâmetros:
+O framework pode se comunicar com um dispositivo de automação via protocolo modbus, atuando como  **cliente **modbus. Os **endereços modbus começam em 1**, e **todas as variaveis são escritas em memória coil**.
 
-- **enable**
-  - true habilita o uso do lote de produção, false desabilita.
-- **validation**
-  - string que define a regra de validação do lote. Esse campo aceita apenas [expressões regulares](https://regexr.com). Caso a expressão não valide a entrada do usuário, ele não poderá iniciar a produção.
+A configuração da comunicação modbus é feita no arquivo de configuração pelo campo **modbus**:
+
+- **host**
+  - IP do dispositivo **servidor**.
+- **port**
+  - Porta tcp do dispositivo **servidor**.
+- **slaveId**
+  - Id do cliente conectado.
+- **heartbeatInterval**
+  - Intervalo do [heartbeat](/settings/heartbeat).
+- **heartbeatAddress**
+  - Endereço modbus no servidor para escrever o [heartbeat](/settings/heartbeat).
+- **pieceResult**
+  - Endereços usados para escrever o resultado **geral** da peça processada.
+  - **resultAddress**
+    - Endereço modbus onde o resultado será escrito, sendo verdadeiro apenas caso aprove.
+  - **updateAddress**
+    - Endereço modbus onde será escrito verdadeiro para indicar que o resultado foi escrito no resultAddress, o dispositivo deve consumir esse dado para garantir o sincronismo dos sistemas.
+- **processResult**
+  - Endereços usados para escrever o resultado **especifico** de cada processamento. Para habilitar, é necessario adicionar na configuração, dentro do **processResult**, uma entrada com o nome do processor que se deseja escrever o resultado, com as propriedades resultAddress e updateAddress. Exemplo, para escrever os resultados do processamento **_"Processor"_**, basta adicionar em process result da seguinte forma:
+
+    ```json
+    "processResult": {
+       "Processor": {
+          "resultAddress": 5,
+          "updateAddress": 6
+       }
+    }
+    ```
+  - **resultAddress**
+    - Endereço modbus onde o resultado será escrito, sendo verdadeiro apenas caso aprove.
+  - **updateAddress**
+    - Endereço modbus onde será escrito verdadeiro para indicar que o resultado foi escrito no resultAddress, o dispositivo deve consumir esse dado para garantir o sincronismo dos sistemas.

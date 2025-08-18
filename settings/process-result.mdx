@@ -1,0 +1,16 @@
+---
+title: "Resultado da avaliação"
+description: "Tabela de resultados de processamento"
+---
+
+Para cada processamento e avaliação, podem ser retornados os seguintes resultados:
+
+| Resultado            | Id | Descrição                                                                                               |
+| -------------------- | --- | ------------------------------------------------------------------------------------------------------- |
+| REPROVED             | 0  | Peça reprovou. Caso pelo menos 1 dos scripts retorne 0 no resultado, reprova a peça.                    |
+| APPROVED             | 1  | Peça aprovou. Gerado apenas se todos os scripts retornarem 1                                            |
+| IGNORED              | 2  | Peça ignorada. Gerado apenas se todos os scripts retornarem 2                                           |
+| FAILED_UNKNOWN       | -1 | Peça com falha desconhecida. É gerado caso tenha ocorrido algum erro interno na avaliação.              |
+| FAILED_PROCESS_ERROR | -2 | Peça com falha gerada em algum dos processemantos de script                                             |
+| FAILED_NOT_COMPLETED | -3 | Peça com falha por falta de imagens. É configurado pelo firstProcessName e lastProcessName.             |
+| FAILED_TIMEOUT       | -4 | Peça com falha por timeout, caso tenha levado mais do que o valor definido para timeout para processar. |
