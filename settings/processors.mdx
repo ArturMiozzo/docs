@@ -2,3 +2,44 @@
 title: "Processamento"
 description: "Configurações do processamento."
 ---
+
+### Settings.json
+
+```json
+"process": [
+    {
+      "name": "Processor1",
+      "friendlyName": [
+        "Processor A",
+        "Processor B",
+      ],
+      "file": "Python\\MyProcess.py",
+      "camera": "Camera1",
+      "imageIndex": [1, 2],
+      "enable": true,
+      "debug": false,
+      "stopOnReproval": false
+    }
+  ],
+```
+
+A configuração do processamento é feita no arquivo de configuração pelo campo **process**. O campo é um array do objeto process, isso é, para cada entrada no vetor, um novo processamento é criado. Cada processamento executa a partir de um programa python e deve retornar saidas seguindo o padrão descrito no [script de processamento](/settings/process-script).
+
+O campo **process** é um objeto com os parâmetros:
+
+- **name**
+  - Nome do processor, usado internamente.
+- **friendlyName**
+  - Nome do processor que será exibido nos logs e como resultado na tela. friendlyName é um vetor, que permite definir um nome para cada imagem processada, na ordem. Caso o processor tenha duas imagens processadas, a primeira aparecerá na tela como a primeira entrada do friendlyName e a segunda segue a mesma lógica. 
+- **file**
+  - Caminho para o programa que executa o processamento, seguindo o padrão do [script de processamento](/settings/process-script).
+- **camera**
+  - Nome da câmera que o processor receberá as imagens.
+- **imageIndex**
+  - Define o indice da imagem da câmera usada pelo processor, o campo é um array onde cada entrada é um indice, por exemplo, se a câmera tem 4 imagens por peça, e o indice for [1,2], o processor receberá as duas primeiras imagens de cada peça, se fosse [3,4], recebe as duas ultimas.
+- **enable**
+  - Se falso, desabilita o processamento por script e sempre aprova todas as imagens.
+- **debug**
+  - Se true e o script de processamento estiver habilitado, **não** executa o script, mas aguarda os resultados, permitindo que ele seja executado por fora do framework.
+- **stopOnReproval**
+  - Se true, sempre que o processor gerar um resultado reprovado, para a produção e solicita que um usuario administrador, caso habilitado, faça login. Essa função é útil em sistemas com partes mais críticas.
